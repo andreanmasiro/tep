@@ -16,9 +16,8 @@ touch ./$1/$1.out
 touch ./$1/result.txt
 
 touch ./$1/Makefile
-echo "
-make: 
-        g++ $1.cpp -std=c++11 
-        ./a.out < $1.in > result.txt 
-        diff result.txt 2158.out
+echo "make: 
+    g++ $1.cpp -std=c++11 
+    ./a.out < $1.in > result.txt 
+    diff result.txt 2158.out
 " >> ./$1/Makefile
