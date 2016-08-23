@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir $1
+touch ./$1/$1.cpp
+echo "#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    return 0;
+}" >> ./$1/$1.cpp
+
+touch ./$1/$1.in
+touch ./$1/result.txt
