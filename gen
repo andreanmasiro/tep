@@ -18,5 +18,5 @@ touch ./$1/Makefile
 echo -e "make:
 \tg++ $1.cpp -std=c++11
 \t./a.out < $1.in > result.txt
-\tdiff result.txt $1.out
+\tdiff -c result.txt $1.out
 " >> ./$1/Makefile
