@@ -1,22 +1,36 @@
 #!/bin/bash
 
-mkdir $1
-touch ./$1/$1.cpp
-echo "#include <iostream>
+name=$1
+compile_command="g++ -o $name $name.cpp -std=c++11 -lm -O2"
+main_content="#include <iostream>\r\rusing namespace std;\r\rint main() {\r\treturn 0;\r}\r"
+file_ext="cpp"
+while test $# -gt 0
+do
+    case "$1" in
+        -c) compile_command="gcc -o $name $name.c -lm -O2"
+             main_content="#include <stdio.h>\r\rint main() {\r\treturn 0;\r}\r"
+             file_ext="c"
+            ;;
+        *)
+            ;;
+    esac
+    shift
+done
 
-using namespace std;
+mkdir $name
+echo -e $main_content >> ./$name/$name.$file_ext
 
-int main() {
-    return 0;
-}" >> ./$1/$1.cpp
+touch ./$name/$name.in
+touch ./$name/$name.out
+touch ./$name/result.txt
+touch ./$name/notes.txt
 
-touch ./$1/$1.in
-touch ./$1/$1.out
-touch ./$1/result.txt
+touch ./$name/makefile
+echo -e "$compile_command
+./$name < $name.in > result.txt
+diff -c result.txt $name.out
+" >> ./$name/makefile
 
-touch ./$1/Makefile
-echo -e "make:
-\tg++ $1.cpp -std=c++11
-\t./a.out < $1.in > result.txt
-\tdiff -c result.txt $1.out
-" >> ./$1/Makefile
+touch ./$name/run
+echo -e "$compile_command
+./$name < $name.in" >> ./$name/run
