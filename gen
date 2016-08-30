@@ -4,7 +4,7 @@ name=$1
 nl="\n"
 compile_command="g++ -o $name $name.cpp -std=c++11 -lm -O2"
 c_content="#include <stdio.h>$nl$nl""int main() {$nl\treturn 0;$nl}$nl"
-cpp_content="#include <iostream>$nl$nl""using namespace std;$nl$nl""int main() {$nl\treturn 0;$nl}$nl"
+cpp_content="#include <iostream>$nl$nl""#define debug(x) cout << #x <<\" = \" << x << endl$nl""#define fori(i, ini, lim) for(int i = int(ini); i < int(lim); i++)$nl""#define ford(i, ini, lim) for(int i = int(ini); i >= int(lim); i—)$nl$nl""using namespace std;$nl$nl""typedef long long ll;$nl""typedef long double ld;$nl""typedef pair<int, int> ii;$nl$nl""int main() {$nl\treturn 0;$nl}$nl"
 main_content=$cpp_content
 file_ext="cpp"
 while test $# -gt 0
